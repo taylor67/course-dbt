@@ -2,24 +2,8 @@
 version: 2
 
 models:
-  - name: my_first_dbt_model
-    description: "A starter dbt model"
-    columns:
-      - name: id
-        description: "The primary key for this table"
-        tests:
-          - unique
-          - not_null
-
-  - name: my_second_dbt_model
-    description: "A starter dbt model"
-    columns:
-      - name: id
-        description: "The primary key for this table"
-        tests:
-          - unique
-          - not_null
   - name: stg_addresses
+    description: "Addresses of users"
     columns:
       - name: address_id
         description: "The primary key for this table"
@@ -27,8 +11,26 @@ models:
           - unique
           - not_null
   - name: stg_events
+    description: "Events that users take"
   - name: stg_order_items
+    description: "Products purchased in an order"
+    columns:
+      - name: pk
+        description: "The primary key for this table. Combination of order_id and product_id"
+        tests:
+          - unique
+          - not_null
   - name: stg_orders
+    description: "Orders placed in the greenery"
   - name: stg_products
+    description: "Product catalogue"
   - name: stg_promos
+    description: "Historical promos for order discounts"
   - name: stg_users
+    description: "Users in the greenery system, regardless of having placed an order"
+    columns:
+      - name: user_id
+        description: "The primary key for this table."
+        tests:
+          - unique
+          - not_null
