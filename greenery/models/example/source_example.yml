@@ -20,18 +20,3 @@ sources:
         loaded_at_field: created_at
         description: >
           Contains demographic information about each superhero
-  
-  - name: src_postgres # name of the source 
-    schema: public # this is the schema our raw data lives in
-    database: dbt # this is the name of our database
-
-    tables:
-      - name: addresses
-      - name: events
-      - name: order_items
-      - name: orders 
-      - name: products
-      - name: promos
-      - name: users
-
-
