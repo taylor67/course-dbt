@@ -63,7 +63,7 @@ models:
       - name: discount
         description: "The promo discount in usd"
         tests:
-          - positive
+          - positive_values
   - name: stg_users
     description: "Users in the greenery system, regardless of having placed an order"
     columns:

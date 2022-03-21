@@ -4,7 +4,7 @@ models:
   - name: dim_users
     description: "Information about users and their associated orders"
     columns:
-      - name: address_id
+      - name: user_id
         description: "The primary key for this table"
         tests:  
           - unique
@@ -26,3 +26,13 @@ models:
         description: "Days between created_date and delivered_date"
       - name: days_delivered_late
         description: "Days between delivered_date and estimated_delivery_date. If positive, the number of days delivered early."
+  - name: int_events
+    description: "Transformations to events-level details"
+    columns:
+      - name: event_id
+        tests:
+          - unique
+      - name: event_number
+        tests:
+        - accepted_values:
+              values: ['1', '2', '3', '4']

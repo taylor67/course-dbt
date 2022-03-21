@@ -1,19 +1,16 @@
-with events as (
-    select * from {{ ref('stg_events') }}
-),
-int_events as (
+
+with int_events as (
     select * from {{ ref('int_events') }}
  ),
 session_agg as (
     select 
         session_id,
-        count(*) as count_events_in_session,
+        count(distinct event_id) as count_events_in_session,
         min(created_date) as session_start_datetime,
         max(created_date) as session_end_datetime,
         max(event_number) as furthest_event_number
-    from events
+    from int_events
     group by 1
-    order by 2 desc
 ),
 final as (
     select 
