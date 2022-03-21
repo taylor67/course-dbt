@@ -66,4 +66,4 @@ I found that a test I created was erroneous - I accidentally said that address_i
 
 #### 7. Your stakeholders at Greenery want to understand the state of the data each day. Explain how you would ensure these tests are passing regularly and how you would alert stakeholders about bad data getting through.
 
-We would use the data_freshness test, defined in the 
+We would use the data_freshness test, defined in the source. This sets the warn_after and error_after parameters, so that if the events table and the orders table (the two raw event tables) do not have new values for the fields created_at, an error / warning will appear when you run dbt tests. 
