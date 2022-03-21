@@ -1,9 +1,3 @@
-{{
-  config(
-    materialized='view'
-  )
-}}
-
 with events_source as (
     select * from {{ source('src_postgres', 'events')}}
 )
@@ -14,7 +8,7 @@ with events_source as (
         session_id,
         user_id,
         page_url,
-        created_at,
+        created_at as created_date,
         event_type,
         order_id,
         product_id

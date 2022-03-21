@@ -1,9 +1,3 @@
-{{
-  config(
-    materialized='view'
-  )
-}}
-
 with addresses_source as (
     select * from {{ source('src_postgres', 'addresses')}}
 )

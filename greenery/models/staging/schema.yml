@@ -20,12 +20,50 @@ models:
         tests:
           - unique
           - not_null
+      - name: quantity
+        description: "The number of products purchased in a single order"
+        tests:  
+          - positive_values
   - name: stg_orders
     description: "Orders placed in the greenery"
+    columns:
+      - name: order_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: order_cost
+        description: "The total cost of the order in usd"
+        tests:
+          - positive_values
+      - name: shipping_cost
+        description: "The total cost of the order's shipping in usd"
+        tests:
+          - positive_values
+      - name: order_total
+        description: "The total cost of the order + shipping in usd"
+        tests:
+          - positive_values
   - name: stg_products
     description: "Product catalogue"
+    columns: 
+      - name: product_id
+        description: "The primary key of the table"
+        tests:
+          - not_null
+          - unique
   - name: stg_promos
     description: "Historical promos for order discounts"
+    columns: 
+      - name: promo_id
+        description: "The primary key of the table"
+        tests:
+          - not_null
+          - unique
+      - name: discount
+        description: "The promo discount in usd"
+        tests:
+          - positive
   - name: stg_users
     description: "Users in the greenery system, regardless of having placed an order"
     columns:

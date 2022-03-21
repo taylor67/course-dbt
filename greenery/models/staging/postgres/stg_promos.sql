@@ -1,9 +1,3 @@
-{{
-  config(
-    materialized='table'
-  )
-}}
-
 with promos_source as (
     select * from {{ source('src_postgres', 'promos')}}
 )
@@ -11,9 +5,9 @@ with promos_source as (
 , renamed_casted as (
     select 
         promo_id,
-        discount,
-        status
+        discount
     from promos_source
+    where status = 'active'
 )
 
 select * from renamed_casted

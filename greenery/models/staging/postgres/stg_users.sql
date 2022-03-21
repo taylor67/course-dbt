@@ -1,9 +1,3 @@
-{{
-  config(
-    materialized='table'
-  )
-}}
-
 with users_source as (
     select * from {{ source('src_postgres', 'users')}}
 )
