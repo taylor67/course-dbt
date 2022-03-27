@@ -1,20 +1,29 @@
 
+{% set event_types = ["page_view", "add_to_cart", "checkout", "package_shipped"] %}
+
 with int_events as (
     select * from {{ ref('int_events') }}
  ),
 session_agg as (
     select 
         session_id,
+        order_id, --test ensures this does not make session id non-unique.
         count(distinct event_id) as count_events_in_session,
         min(created_date) as session_start_datetime,
         max(created_date) as session_end_datetime,
-        max(event_number) as furthest_event_number
+        max(event_number) as furthest_event_number,
+        {%- for event_type in event_types %}
+        count(case when event_type = '{{event_type}}' then 1 else 0 end) as count_{{event_type}}_events
+        {%- if not loop.last %},{% endif %}
+        {% endfor %}
     from int_events
-    group by 1
+    group by 1,2
 ),
 final as (
     select 
         session_id,
+        order_id,
+        order_id is not null as is_converted_session,
         count_events_in_session,
         session_start_datetime,
         session_end_datetime,
