@@ -35,3 +35,16 @@ group by 1
 order by 2 desc
 ```
 
+### PART 2:
+
+[Macro definition](https://github.com/taylor67/course-dbt/blob/main/greenery/macros/get_event_types.sql)
+
+[Macro in use](https://github.com/taylor67/course-dbt/blob/main/greenery/models/marts/product/fct_sessions.sql)
+
+### PART 3:
+[Created post-hook and on-run-end](https://github.com/taylor67/course-dbt/blob/main/greenery/dbt_project.yml)
+* "post-hooks to grant straight away" - [doc](https://discourse.getdbt.com/t/the-exact-grant-statements-we-use-in-a-dbt-project/430)
+ - not sure if these two things in combo would make sense like this - what's the value of running grant `select` right when the model is built with the `post-hook`, but not granting `usage` until `on-run-end`? but this is how it's done in that linked doc.
+
+### PART 4:
+dbt `group_by` util used in [int_orders](https://github.com/taylor67/course-dbt/blob/main/greenery/models/marts/core/int_orders.sql)

@@ -16,4 +16,4 @@ select
 from orders as o
 left join order_items as oi
     on o.order_id = oi.order_id
-group by 1
+{{ dbt_utils.group_by(n=1) }}
