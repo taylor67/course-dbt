@@ -19,7 +19,7 @@ models:
         description: "The duration of the session"
         tests:
           - positive_values
-  - name: fct_orders
+  - name: dim_orders
     description: "Row for every order with some additional info about the entire order added"
     columns:
       - name: days_to_delivery
