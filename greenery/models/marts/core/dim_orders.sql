@@ -1,5 +1,5 @@
 with orders as (
-  select * from {{ ref('stg_orders') }}
+  select * from {{ ref('orders_snapshot') }}
 ),
 
 int_orders as (
@@ -43,7 +43,10 @@ order_details as (
     date_part('day', delivered_date - estimated_delivery_date) as days_delivered_late,
     delivered_date is not null as was_delivered,
     uwf.user_order_rank,
-    uwf.days_since_last_order
+    uwf.days_since_last_order,
+    dbt_valid_from,
+    dbt_valid_to,
+    dbt_valid_to is null as is_valid
   from orders as o
   left join int_orders as io
     on o.order_id = io.order_id

@@ -1,4 +1,4 @@
-{% snapshot order_snapshot %}
+{% snapshot orders_snapshot %}
 
 {{ 
     config(
@@ -9,9 +9,9 @@
     )
 }}
 
-with orders as {{
-    select * from ref('dim_orders')
-}}
+with orders as (
+    select * from {{ ref('stg_orders') }}
+)
 
 select * from orders
 
