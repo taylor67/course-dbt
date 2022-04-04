@@ -10,4 +10,4 @@ exposures:
       name: Taylor Omeara
       email: tayloromama@gmail.com
     depends_on:
-      - ref('dim_orders')
+      - ref('fct_funnel_agg')
